@@ -1,0 +1,29 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /var/www/i2tocr-web
+          git config --global --unset-all url.ssh://git@github.com/.insteadof
+          git config --global --unset-all core.sshCommand
+          git pull origin main
+          sudo chown -R www-data:www-data .
+          sudo chmod -R 755 .
+          sudo systemctl reload nginx
+          echo "✅ Deployment completed successfully!"
