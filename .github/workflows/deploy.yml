@@ -19,7 +19,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /var/www/ i2tocr-web
+          cd /var/www/i2tocr-web
           git config --global --add safe.directory /var/www/i2tocr-web
           git pull origin main
           sudo chown -R www-data:www-data .
