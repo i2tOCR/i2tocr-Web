@@ -1,20 +1,139 @@
-// Simple script for smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
+// Initialize Particles.js
+particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: "#4cc9f0"
+        },
+        shape: {
+            type: "circle"
+        },
+        opacity: {
+            value: 0.5,
+            random: true
+        },
+        size: {
+            value: 3,
+            random: true
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#4cc9f0",
+            opacity: 0.2,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false
         }
-    });
+    },
+    interactivity: {
+        detect_on: "canvas",
+        events: {
+            onhover: {
+                enable: true,
+                mode: "repulse"
+            },
+            onclick: {
+                enable: true,
+                mode: "push"
+            },
+            resize: true
+        }
+    }
 });
+
+// Digital Rain Effect
+function createDigitalRain() {
+    const container = document.getElementById('digitalRain');
+    const columns = Math.floor(container.offsetWidth / 20);
+    
+    for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'rain-column';
+        column.style.left = `${i * 20}px`;
+        column.style.animationDelay = `${Math.random() * 20}s`;
+        
+        // Generate random characters
+        let content = '';
+        const length = Math.floor(Math.random() * 15) + 10;
+        for (let j = 0; j < length; j++) {
+            const chars = '01アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            content += chars.charAt(Math.floor(Math.random() * chars.length)) + '<br>';
+        }
+        
+        column.innerHTML = content;
+        container.appendChild(column);
+    }
+}
+
+// Neural Network Visualization
+function createNeuralNetwork() {
+    const container = document.getElementById('neuralNetwork');
+    container.innerHTML = '';
+    
+    // Create layers
+    const layers = [5, 8, 6, 4];
+    const layerPositions = [];
+    
+    // Calculate node positions
+    for (let l = 0; l < layers.length; l++) {
+        const layerNodes = layers[l];
+        layerPositions[l] = [];
+        
+        for (let n = 0; n < layerNodes; n++) {
+            const x = (l + 1) * (container.offsetWidth / (layers.length + 1));
+            const y = (n + 1) * (container.offsetHeight / (layerNodes + 1));
+            
+            const node = document.createElement('div');
+            node.className = 'node';
+            node.style.left = `${x}px`;
+            node.style.top = `${y}px`;
+            node.style.animationDelay = `${Math.random() * 2}s`;
+            container.appendChild(node);
+            
+            layerPositions[l][n] = { x, y };
+        }
+    }
+    
+    // Create connections between layers
+    for (let l = 0; l < layers.length - 1; l++) {
+        for (let n1 = 0; n1 < layers[l]; n1++) {
+            for (let n2 = 0; n2 < layers[l + 1]; n2++) {
+                const start = layerPositions[l][n1];
+                const end = layerPositions[l + 1][n2];
+                
+                const length = Math.sqrt(
+                    Math.pow(end.x - start.x, 2) + 
+                    Math.pow(end.y - start.y, 2)
+                );
+                
+                const angle = Math.atan2(end.y - start.y, end.x - start.x) * 180 / Math.PI;
+                
+                const connection = document.createElement('div');
+                connection.className = 'connection';
+                connection.style.left = `${start.x}px`;
+                connection.style.top = `${start.y}px`;
+                connection.style.width = `${length}px`;
+                connection.style.transform = `rotate(${angle}deg)`;
+                connection.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(connection);
+            }
+        }
+    }
+}
 
 // Sticky header
 window.addEventListener('scroll', function() {
@@ -114,29 +233,28 @@ document.querySelectorAll('.btn, .cta-button, .app-btn').forEach(button => {
     });
 });
 
-// Add CSS for ripple effect
-const rippleStyles = `
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
+// Add dynamic scan effect
+const scanArea = document.querySelector('.scan-area');
+if (scanArea) {
+    scanArea.addEventListener('click', function() {
+        const scanLine = document.querySelector('.scan-line');
+        scanLine.style.animation = 'none';
+        setTimeout(() => {
+            scanLine.style.animation = 'scan 2s ease-in-out infinite';
+        }, 10);
+    });
 }
 
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
+// Handle window resize
+window.addEventListener('resize', function() {
+    document.getElementById('digitalRain').innerHTML = '';
+    createDigitalRain();
+    
+    createNeuralNetwork();
+});
 
-.btn, .cta-button, .app-btn {
-    position: relative;
-    overflow: hidden;
-}
-`;
-
-const styleSheet = document.createElement('style');
-styleSheet.innerText = rippleStyles;
-document.head.appendChild(styleSheet);
+// Initialize animations when page loads
+window.addEventListener('load', function() {
+    createDigitalRain();
+    createNeuralNetwork();
+});

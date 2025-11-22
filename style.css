@@ -3,18 +3,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
     --primary: #4361ee;
     --primary-light: #4895ef;
-    --secondary: #3f37c9;
-    --dark: #1d3557;
-    --light: #f8f9fa;
     --success: #4cc9f0;
-    --text: #333;
-    --text-light: #6c757d;
     
     /* Glass morphism variables */
     --glass-bg: rgba(255, 255, 255, 0.1);
@@ -24,10 +19,11 @@
 }
 
 body {
-    background: linear-gradient(135deg, #41465b 0%, #47424b 100%);
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     color: white;
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .container {
@@ -37,13 +33,146 @@ body {
     padding: 0 15px;
 }
 
-/* Glass morphism base class */
-.glass-effect {
-    background: var(--glass-bg);
-    backdrop-filter: var(--backdrop-blur);
-    -webkit-backdrop-filter: var(--backdrop-blur);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+/* Particle Background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+/* Digital Rain Effect */
+.digital-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.05;
+}
+
+.rain-column {
+    position: absolute;
+    top: -100px;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #0f0;
+    animation: rain 20s linear infinite;
+    line-height: 1.2;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Text Scanning Effect */
+.scan-highlight {
+    position: relative;
+    overflow: hidden;
+}
+
+.scan-highlight::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(76, 201, 240, 0.4),
+        transparent
+    );
+    animation: scan-highlight 3s linear infinite;
+}
+
+@keyframes scan-highlight {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Neural Network Visualization */
+.neural-section {
+    padding: 5rem 0;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.neural-network {
+    position: relative;
+    height: 300px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-light);
+    z-index: 2;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.connection {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+    transform-origin: left center;
+    z-index: 1;
+    animation: transmit 3s linear infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+@keyframes transmit {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 0;
+    }
 }
 
 /* Header Styles */
@@ -65,13 +194,20 @@ header {
     padding: 1rem 0;
 }
 
+.logo-image {
+    filter: brightness(0) invert(1);
+    width: 40px;
+    height: 40px;
+    transition: filter 0.3s ease;
+}
+
 .logo {
     display: flex;
     align-items: center;
-    font-weight: 700;
-    font-size: 1.5rem;
+    gap: 10px;
     color: white;
 }
+
 
 .logo i {
     margin-right: 0.5rem;
@@ -97,23 +233,8 @@ header {
 /* Hero Section */
 .hero {
     padding: 8rem 0 5rem;
-    background: linear-gradient(135deg, 
-        rgba(61, 66, 88, 0.8) 0%, 
-        rgba(37, 44, 52, 0.8) 100%);
     position: relative;
     overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
-    background-size: cover;
-    pointer-events: none;
 }
 
 .hero-content {
@@ -178,36 +299,80 @@ header {
     transform: translateY(-3px);
 }
 
-/* App Demo in Hero */
+/* iPhone Mockup Styles */
 .phone-mockup {
     width: 320px;
     height: 640px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 40px;
-    padding: 20px;
+    background: #000;
+    border-radius: 50px;
+    padding: 10px;
     margin: 0 auto;
     position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 0 0 10px #1a1a1a,
+        0 0 0 12px #3a3a3a,
+        0 0 0 14px #1a1a1a,
+        0 25px 50px rgba(0, 0, 0, 0.8);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+.phone-mockup:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(0);
+    }
+    50% {
+        transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-20px);
+    }
 }
 
 .phone-screen {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 30px;
+    border-radius: 40px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
+/* iPhone Notch */
+.notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 30px;
+    background: #000;
+    border-radius: 0 0 20px 20px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notch::before {
+    content: '';
+    width: 80px;
+    height: 5px;
+    background: #333;
+    border-radius: 5px;
+}
+
+/* App Interface */
 .app-interface {
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
 }
 
 .app-header {
@@ -221,6 +386,7 @@ header {
     justify-content: center;
     gap: 0.5rem;
     font-size: 1.1rem;
+    border-radius: 20px 20px 0 0;
 }
 
 .app-content {
@@ -479,6 +645,27 @@ header {
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* Ripple effect styles */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.btn, .cta-button, .app-btn {
+    position: relative;
+    overflow: hidden;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .navbar {
@@ -529,5 +716,9 @@ header {
     
     .section-title h2 {
         font-size: 2rem;
+    }
+    
+    .neural-network {
+        height: 200px;
     }
 }
