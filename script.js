@@ -95,6 +95,10 @@ function initializeOcrEventListeners() {
     // File selection and drag/drop
     elements.imageUpload.addEventListener('change', handleFileSelect);
     
+    document.getElementById('selectFileBtn').addEventListener('click', () => {
+        elements.imageUpload.click();
+    });
+    
     if (elements.uploadArea) {
         elements.uploadArea.addEventListener('click', (e) => {
             if (e.target.tagName !== 'BUTTON') {
@@ -144,6 +148,12 @@ function initializeCtaEventListeners() {
             alert('The iOS App is Coming Soon! Stay tuned for updates.');
         });
     }
+    
+    document.getElementById('scrollToOcrBtn').addEventListener('click', () => {
+        document.getElementById('ocr-tool').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    });
 }
 
 /**
