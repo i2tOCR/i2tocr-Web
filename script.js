@@ -12,7 +12,7 @@
 // =======================================================================
 
 const OCR_API_CONFIG = {
-    ENDPOINT: 'http://5.75.197.39:8000/ocr',
+    ENDPOINT: 'https://i2tocr.com/ocr',
     MIN_LOADING_TIME_MS: 3000,
     TESSERACT_CONFIG: '--psm 4'
 };
