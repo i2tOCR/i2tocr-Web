@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - i2t OCR</title>
+
+    <!-- Meta & Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Page-specific Styles -->
+    <style>
+        /* =======================================================================
+           === PRIVACY POLICY PAGE SPECIFIC STYLES ===
+           ======================================================================= */
+        
+        .policy-page {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding: 120px 0 60px;
+        }
+
+        .legal-page-container {
+            background: var(--glass-bg);
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: var(--glass-shadow);
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .legal-page-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .legal-page-container h2 {
+            font-size: 1.75rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .legal-page-container h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .legal-page-container p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .legal-page-container strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(76, 201, 240, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(76, 201, 240, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* List Styles */
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .legal-page-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .legal-page-container h1 {
+                font-size: 2rem;
+            }
+            
+            .legal-page-container h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 100px 0 40px;
+            }
+            
+            .legal-page-container {
+                padding: 1rem;
+            }
+            
+            .legal-page-container h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="policy-page">
+    <!-- ======================================================================= -->
+    <!-- === HEADER SECTION === -->
+    <!-- ======================================================================= -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="logo.png" alt="i2t OCR Logo" class="logo-image">
+                    <span>i2t OCR</span>
+                </div>
+                <button class="cta-button" id="iosAppCta">iOS App</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- === MAIN CONTENT SECTION === -->
+    <!-- ======================================================================= -->
+    <section class="main-content">
+        <div class="container">
+            <div class="legal-page-container">
+                
+                <!-- Page Title and Effective Date -->
+                <h1>Privacy Policy</h1>
+                <p><strong>Effective Date:</strong> <span id="currentDate"></span></p>
+
+                <!-- Important Privacy Notes -->
+                <div class="highlight-box">
+                    <h3><i class="fas fa-shield-alt"></i> Important Privacy Notes</h3>
+                    <p><strong>No Data Storage:</strong> We do not store any of your images, documents, or extracted text on our servers. All processing happens in real-time and data is immediately discarded after processing.</p>
+                    <p><strong>iOS Authentication:</strong> In our iOS app, authentication is handled exclusively through your device's built-in security (Face ID, Touch ID, or passcode). We don't collect or store login credentials.</p>
+                    <p><strong>Completely Free:</strong> i2t OCR is a 100% free service with no hidden costs or premium tiers.</p>
+                </div>
+
+                <!-- 1. Introduction -->
+                <h2><i class="fas fa-info-circle"></i> 1. Introduction</h2>
+                <p>This Privacy Policy explains how <strong>i2t OCR</strong> ("we," "Company," or "us") collects, uses, maintains, and discloses information collected from users ("you") of our OCR App and website. We are committed to protecting your privacy.</p>
+
+                <!-- 3. Data Processing & Storage Policy -->
+                <h2><i class="fas fa-cogs"></i> 2. Data Processing & Storage Policy</h2>
+                <p><strong>No Data Retention:</strong> We want to be absolutely clear - we do not store any of the following:</p>
+                <ul>
+                    <li>Uploaded images or documents</li>
+                    <li>Extracted text from your documents</li>
+                    <li>Processing results or OCR outputs</li>
+                    <li>User credentials or personal authentication data</li>
+                </ul>
+                <p>All OCR processing occurs in real-time, and your data is immediately discarded after the conversion is complete.</p>
+
+                <!-- 4. iOS App Authentication -->
+                <h2><i class="fab fa-apple"></i> 3. iOS App Authentication</h2>
+                <p>For our iOS application, we utilize Apple's built-in security framework:</p>
+                <ul>
+                    <li>Authentication is handled through Face ID, Touch ID, or device passcode</li>
+                    <li>We do not collect, store, or have access to your biometric data</li>
+                    <li>No separate username/password system is required</li>
+                    <li>All authentication occurs locally on your device</li>
+                </ul>
+
+                <!-- 5. Service Model -->
+                <h2><i class="fas fa-gift"></i> 4. Service Model</h2>
+                <p><strong>Free Service:</strong> i2t OCR is completely free to use. We do not offer premium tiers, in-app purchases, or subscription models. Our service is supported without charging our users.</p>
+
+                <!-- 8. Disclosure of Personal Information -->
+                <h2><i class="fas fa-share-alt"></i> 5. Disclosure of Personal Information to Third Parties</h2>
+                <p>We do not sell your Personal Data. We share minimal information only with trusted service providers necessary to run the OCR service, or when legally required.</p>
+
+                <!-- 9. Contact Information -->
+                <h2><i class="fas fa-envelope"></i> 6. Contact Information</h2>
+                <p>If you have any questions about this Privacy Policy, you may contact us using the following details:</p>
+                <div class="contact-info">
+                    <strong>Company Name: i2t OCR Service</strong><br>
+                    <strong>Email Address: support@i2tocr.com</strong>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- === FOOTER SECTION === -->
+    <!-- ======================================================================= -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-column about">
+                    <h3>i2t OCR</h3>
+                    <p>Convert images to text quickly and accurately using advanced AI-powered optical character recognition technology.</p>
+                </div>
+
+                <div class="footer-column links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#ocr-tool">Try OCR</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column legal">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a></p>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> i2t OCR. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+    <!-- === JAVASCRIPT === -->
+    <!-- ======================================================================= -->
+    <script>
+        /**
+         * Initialize Privacy Policy Page
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date for effective date
+            const currentDate = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('currentDate').textContent = currentDate;
+
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // iOS App CTA button functionality
+            document.getElementById('iosAppCta').addEventListener('click', function() {
+                alert('The iOS App is Coming Soon! Stay tuned for updates.');
+                // Replace with actual App Store link when available:
+                // window.open('https://apps.apple.com/app/your-app-id', '_blank');
+            });
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        /**
+         * Sticky header effect
+         */
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

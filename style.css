@@ -1,4 +1,6 @@
-/* Reset and Base Styles */
+/* =======================================================================
+   === 1. RESET & BASE STYLES ===
+   ======================================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +21,7 @@
 }
 
 body {
+    /* Deep blue/purple gradient for a tech/cyber feel */
     background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     color: white;
     line-height: 1.6;
@@ -33,7 +36,11 @@ body {
     padding: 0 15px;
 }
 
-/* Particle Background */
+/* =======================================================================
+   === 2. VISUAL EFFECTS (Background & Animations) ===
+   ======================================================================= */
+
+/* Particle Background (Placeholder for particles.js) */
 #particles-js {
     position: fixed;
     width: 100%;
@@ -58,7 +65,7 @@ body {
 .rain-column {
     position: absolute;
     top: -100px;
-    color: #0f0;
+    color: #0f0; /* Classic Matrix Green */
     font-family: 'Courier New', monospace;
     font-size: 16px;
     font-weight: bold;
@@ -81,37 +88,6 @@ body {
     100% {
         transform: translateY(100vh);
         opacity: 0;
-    }
-}
-
-/* Text Scanning Effect */
-.scan-highlight {
-    position: relative;
-    overflow: hidden;
-}
-
-.scan-highlight::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(76, 201, 240, 0.4),
-        transparent
-    );
-    animation: scan-highlight 3s linear infinite;
-}
-
-@keyframes scan-highlight {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
     }
 }
 
@@ -163,28 +139,54 @@ body {
 
 @keyframes transmit {
     0% {
-        transform: scaleX(0);
+        width: 0%;
         opacity: 0;
     }
     50% {
+        width: 100%;
         opacity: 1;
     }
     100% {
-        transform: scaleX(1);
+        width: 100%;
         opacity: 0;
     }
 }
 
-/* Header Styles */
+/* Ripple effect styles for buttons */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.btn, .cta-button, .app-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+/* =======================================================================
+   === 3. HEADER & NAVIGATION ===
+   ======================================================================= */
 header {
+    /* Glass morphism effect for header */
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: box-shadow 0.3s ease; /* Transition for sticky header shadow */
 }
 
 .navbar {
@@ -194,23 +196,20 @@ header {
     padding: 1rem 0;
 }
 
-.logo-image {
-    filter: brightness(0) invert(1);
-    width: 40px;
-    height: 40px;
-    transition: filter 0.3s ease;
-}
-
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
     color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
-
-.logo i {
-    margin-right: 0.5rem;
+.logo-image {
+    filter: brightness(0) invert(1);
+    width: 40px;
+    height: 40px;
+    transition: filter 0.3s ease;
 }
 
 .cta-button {
@@ -223,6 +222,8 @@ header {
     cursor: pointer;
     transition: all 0.3s;
     backdrop-filter: blur(10px);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .cta-button:hover {
@@ -230,40 +231,12 @@ header {
     transform: translateY(-2px);
 }
 
-/* Hero Section */
-.hero {
-    padding: 8rem 0 5rem;
-    position: relative;
-    overflow: hidden;
-}
 
-.hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-text h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.hero-text p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
+/* =======================================================================
+   === 4. BUTTONS & UTILITY STYLES ===
+   ======================================================================= */
 .btn {
+    transition: all 0.3s ease;
     padding: 1rem 2rem;
     border-radius: 50px;
     font-weight: 600;
@@ -299,6 +272,60 @@ header {
     transform: translateY(-3px);
 }
 
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.section-title p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+
+/* =======================================================================
+   === 5. HERO & MOCKUP ===
+   ======================================================================= */
+.hero {
+    padding: 8rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-text p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
 /* iPhone Mockup Styles */
 .phone-mockup {
     width: 320px;
@@ -316,10 +343,6 @@ header {
     transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
     transition: transform 0.5s ease;
     animation: float 6s ease-in-out infinite;
-}
-
-.phone-mockup:hover {
-    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
 }
 
 @keyframes float {
@@ -343,7 +366,6 @@ header {
     position: relative;
 }
 
-/* iPhone Notch */
 .notch {
     position: absolute;
     top: 0;
@@ -354,20 +376,8 @@ header {
     background: #000;
     border-radius: 0 0 20px 20px;
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.notch::before {
-    content: '';
-    width: 80px;
-    height: 5px;
-    background: #333;
-    border-radius: 5px;
-}
-
-/* App Interface */
 .app-interface {
     flex: 1;
     display: flex;
@@ -411,14 +421,6 @@ header {
     margin-bottom: 2rem;
 }
 
-.scan-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 .scan-line {
     position: absolute;
     top: 0;
@@ -435,12 +437,6 @@ header {
     100% { top: 100%; opacity: 0; }
 }
 
-.scan-area p {
-    color: var(--text-light);
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
 .app-buttons {
     display: flex;
     gap: 1rem;
@@ -454,13 +450,8 @@ header {
     padding: 1rem;
     border-radius: 15px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
     cursor: pointer;
     transition: all 0.3s;
-    font-size: 1rem;
 }
 
 .app-btn:hover {
@@ -468,27 +459,11 @@ header {
     box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
 }
 
-/* Features Section */
+/* =======================================================================
+   === 6. FEATURES & HOW IT WORKS ===
+   ======================================================================= */
 .features {
     padding: 5rem 0;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.section-title h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.section-title p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.9;
 }
 
 .features-grid {
@@ -498,15 +473,16 @@ header {
 }
 
 .feature-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Glass morphism for cards */
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border);
     border-radius: 25px;
     padding: 2.5rem;
     transition: all 0.3s ease;
     text-align: center;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow: var(--glass-shadow);
 }
 
 .feature-card:hover {
@@ -529,18 +505,6 @@ header {
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.feature-card h3 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.feature-card p {
-    opacity: 0.9;
-    line-height: 1.8;
-}
-
-/* How It Works Section */
 .how-it-works {
     padding: 5rem 0;
     background: rgba(255, 255, 255, 0.05);
@@ -578,95 +542,243 @@ header {
     backdrop-filter: blur(10px);
 }
 
-.step h3 {
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.step p {
-    opacity: 0.9;
-    line-height: 1.8;
-}
-
-/* Demo Section */
-.demo {
+/* =======================================================================
+   === 7. OCR TOOL SPECIFIC STYLES ===
+   ======================================================================= */
+.ocr-tool-section {
     padding: 5rem 0;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.demo-container {
-    max-width: 1000px;
+.ocr-interface-box {
+    max-width: 900px;
     margin: 0 auto;
-}
-
-.demo-comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
-}
-
-.demo-item h4 {
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.demo-image, .demo-text {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Glass effect for main tool box */
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border);
     border-radius: 25px;
     padding: 3rem;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    height: 350px;
+    box-shadow: var(--glass-shadow);
+}
+
+.upload-area {
+    text-align: center;
+    border: 3px dashed var(--success);
+    border-radius: 15px;
+    padding: 4rem 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    background: rgba(76, 201, 240, 0.1);
+    border-color: var(--primary);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: var(--success);
+    margin-bottom: 1rem;
+}
+
+.file-input-hidden {
+    display: none;
+}
+
+/* Comparison and Output Area */
+.tool-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+    display: none; /* Initially hidden, shown by JS after upload */
+}
+
+.tool-item h4 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.image-preview, .text-output {
+    min-height: 250px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
 }
 
-.image-placeholder {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+#imagePreview img {
+    max-width: 100%;
+    max-height: 230px;
+    border-radius: 8px;
+    object-fit: contain;
 }
 
-.image-placeholder i {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.7);
+.text-output {
+    padding: 0; 
+    justify-content: space-between;
 }
 
-.text-result {
-    text-align: left;
-    line-height: 2;
+#extractedText {
+    width: 100%;
+    flex-grow: 1;
+    background: transparent;
+    color: white;
+    border: none;
+    resize: none;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    outline: none;
+}
+
+/* Process Controls (Run OCR & Reset) */
+.process-controls {
+    display: flex; 
+    justify-content: center;
+    gap: 1.5rem; 
+    margin-top: 2rem;
+    display: none; /* Initially hidden, shown by JS after upload */
+}
+
+.btn-large {
+    padding: 1rem 3rem;
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+    flex: 0 1 250px; /* Allow buttons to grow, but limit max width */
 }
 
-/* Ripple effect styles */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
+/* OCR Button Animation States */
+@keyframes button-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.4); 
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 201, 240, 0);
     }
 }
 
-.btn, .cta-button, .app-btn {
-    position: relative;
-    overflow: hidden;
+.process-controls .btn-primary {
+    animation: button-pulse 2s infinite; 
 }
 
-/* Responsive Styles */
+.btn.animating {
+    transform: scale(0.95);
+    border-color: #f72585 !important;
+    box-shadow: 0 0 15px #f72585, 0 0 5px #f72585 inset;
+}
+
+/* Specific styling for the secondary button (New Scan) */
+.process-controls .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white; 
+}
+
+.process-controls .btn-secondary:hover {
+    border-color: var(--primary); 
+    background: rgba(76, 201, 240, 0.1);
+}
+
+/* Copy button specific style */
+#copyButton {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0 0 10px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#copyButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: none; 
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000; 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.is-visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1e1e3f, #3a3a60);
+    border: 1px solid var(--success);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-backdrop.is-visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h3 {
+    color: var(--success);
+    margin-bottom: 0.5rem;
+}
+
+.modal-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.language-dropdown-modal {
+    appearance: none;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
+.language-dropdown-modal option {
+    background: #1e1e3f;
+    color: white;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -721,4 +833,402 @@ header {
     .neural-network {
         height: 200px;
     }
+
+    .process-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-large {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .ocr-interface-box {
+        padding: 1.5rem;
+    }
+    .tool-comparison {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.ocr-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(18, 18, 18, 0.9); 
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease-out; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.ocr-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.9); 
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease-out; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary-light);
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes scan-small {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.tool-comparison {
+    position: relative;
+}
+
+
+/* === Modern AI Loader === */
+.ai-loader-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.ai-loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.ai-loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.ai-loader div {
+    position: absolute;
+    border: 4px solid transparent;
+    border-top-color: #4cc9f0;
+    border-radius: 50%;
+    animation: aiSpin 1.2s linear infinite;
+}
+
+.ai-loader div:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    animation-duration: 1.4s;
+}
+
+.ai-loader div:nth-child(2) {
+    width: 55px;
+    height: 55px;
+    top: 12.5px;
+    left: 12.5px;
+    animation-duration: 1s;
+}
+
+.ai-loader div:nth-child(3) {
+    width: 30px;
+    height: 30px;
+    top: 25px;
+    left: 25px;
+    animation-duration: 0.8s;
+    border-top-color: #f72585;
+}
+
+@keyframes aiSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* =======================================================================
+   --- FOOTER STYLES ---
+   ======================================================================= */
+
+footer {
+    background-color: transparent; /* Dark background */
+    color: #b3b3b3; /* Light grey text */
+    padding: 60px 0 20px 0;
+    border-top: 1px solid #333;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex-basis: 22%; /* Adjust column width */
+    min-width: 150px;
+}
+
+.footer-column h3 {
+    color: var(--primary-light); /* Light blue titles */
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.footer-column p {
+    font-size: 0.9em;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: var(--primary); /* Hover effect using primary color */
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    font-size: 1.5em;
+    margin-right: 15px;
+    color: var(--primary-light);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Responsive adjustments for Footer */
+@media (max-width: 768px) {
+    .footer-grid {
+        justify-content: flex-start;
+    }
+    .footer-column {
+        flex-basis: 45%;
+        margin-bottom: 30px;
+    }
+}
+
+
+/* =======================================================================
+   --- LEGAL & SUPPORT PAGE STYLES (privacy-policy.html, support.html) ---
+   ======================================================================= */
+
+/* --- 1. General Page Structure --- 
+*/
+
+/* Body background for legal/support pages (assuming a light background) */
+.policy-page, .support-page {
+    background-color: #f9f9f9;
+}
+
+/* Add padding for content below the fixed header */
+.policy-page .main-content, .support-page .main-content {
+    padding-top: 100px; 
+    padding-bottom: 100px;
+    min-height: 80vh; /* Ensure content area is tall enough */
+}
+
+/* Main content box (replaces standard .container for a boxed look) */
+.legal-page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background: transparent;
+    border-radius: 12px;
+    /* Soft shadow for a modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); 
+    text-align: left;
+}
+
+/* --- 2. Typography & Headings --- 
+*/
+
+.legal-page-container h1 {
+    font-size: 2.5em;
+    color: #2c3e50; /* Dark text for primary titles */
+    /* Highlight using your primary color (var(--primary) is usually #4cc9f0) */
+    border-bottom: 3px solid var(--primary); 
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.legal-page-container h2 {
+    color: var(--primary); /* Primary color for main section titles */
+    margin-top: 40px;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.legal-page-container h3 {
+    color: #34495e; 
+    margin-top: 25px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.legal-page-container p, 
+.legal-page-container ul,
+.legal-page-container li {
+    font-size: 1em;
+    color: #ffffff;
+    line-height: 1.7;
+}
+
+.legal-page-container ul {
+    list-style: disc;
+    padding-left: 25px;
+}
+
+/* --- 3. Table Styling (Privacy Policy) --- 
+*/
+
+.legal-page-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95em;
+}
+
+.legal-page-container th, 
+.legal-page-container td {
+    border: 1px solid #eee;
+    padding: 15px;
+    text-align: left;
+}
+
+.legal-page-container th {
+    background-color: #f2f2f2;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* --- 4. Support Page Specific Elements --- 
+*/
+
+.support-container {
+    text-align: center; /* Center the grid and title intro */
+}
+
+.support-container h2 {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.section-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.support-card {
+    background-color: transparent; /* Light background for cards */
+    padding: 25px;
+    border-radius: 8px;
+    width: 45%;
+    min-width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.support-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.support-card i {
+    font-size: 1.8em;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.support-card a.btn-primary {
+    display: inline-block;
+    margin-top: 15px;
+    /* Inherit button styling from index.html (important!) */
+}
+
+.contact-info {
+    text-align: left;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: transparent;
+    max-width: 500px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    font-weight: 500;
 }

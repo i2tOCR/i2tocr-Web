@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Help Center - i2t OCR</title>
+
+    <!-- Meta & Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Page-specific Styles -->
+    <style>
+        /* =======================================================================
+           === SUPPORT PAGE SPECIFIC STYLES ===
+           ======================================================================= */
+        
+        .support-page {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            text-align: center;
+            color: var(--primary);
+            font-size: 8rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Support Section */
+        .support-section {
+            padding: 5rem 0;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .support-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .support-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.5);
+        }
+
+        .support-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .support-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .support-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: var(--glass-bg);
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-top: 3rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .contact-form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+            border: 1px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .success-message i {
+            color: #10b981;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message p {
+            color: var(--text-secondary);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: var(--glass-bg);
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+        }
+
+        .contact-info strong {
+            min-width: 180px;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-image {
+                font-size: 5rem;
+            }
+            
+            .contact-form-container {
+                padding: 2rem;
+            }
+            
+            .contact-info p {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info strong {
+                min-width: auto;
+                margin-bottom: 0.25rem;
+            }
+            
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .support-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="support-page">
+    <!-- ======================================================================= -->
+    <!-- === HEADER SECTION === -->
+    <!-- ======================================================================= -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="logo.png" alt="i2t OCR Logo" class="logo-image">
+                    <span>i2t OCR</span>
+                </div>
+                <button class="cta-button" id="iosAppCta">iOS App</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- === HERO SECTION === -->
+    <!-- ======================================================================= -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>We're Here to Help</h1>
+                    <p>Get support for i2t OCR services. Our team is ready to assist you with any questions or issues you may have.</p>
+                    <button class="btn btn-primary btn-large" id="scrollToSupportBtn">
+                        Get Support Now
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-headset"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- === SUPPORT SECTION === -->
+    <!-- ======================================================================= -->
+    <section class="support-section" id="support">
+        <div class="container">
+            <div class="section-title">
+                <h2>Support & Help Center</h2>
+                <p>Choose how you'd like to get help with i2t OCR</p>
+            </div>
+
+            <!-- Support Options Grid -->
+            <div class="support-grid">
+                <!-- Email Support Card -->
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Support</h3>
+                    <p>Send us a detailed message and we'll get back to you within 24 hours with a solution.</p>
+                    <a href="mailto:support@i2tocr.com" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Email Us
+                    </a>
+                </div>
+
+                <!-- Live Chat Card -->
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p>Chat directly with our support team for immediate assistance during business hours.</p>
+                    <button class="btn btn-primary" onclick="startLiveChat()">
+                        <i class="fas fa-comment-dots"></i> Start Chat
+                    </button>
+                </div>
+
+                <!-- Knowledge Base Card -->
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Knowledge Base</h3>
+                    <p>Browse our comprehensive documentation and FAQ for instant answers.</p>
+                    <button class="btn btn-primary" onclick="openKnowledgeBase()">
+                        <i class="fas fa-search"></i> View Docs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h2>Send us a Message</h2>
+                <form id="supportForm">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Brief description of your issue" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment"></i> Message</label>
+                        <textarea id="message" class="form-control" placeholder="Please describe your issue in detail..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large btn-block">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Message Sent Successfully!</h3>
+                    <p>Thank you for contacting us. We'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3><i class="fas fa-info-circle"></i> Other Ways to Reach Us</h3>
+                <p>
+                    <strong>Technical Support:</strong> 
+                    <a href="mailto:support@i2tocr.com">support@i2tocr.com</a>
+                </p>
+                <p>
+                    <strong>General Inquiries:</strong> 
+                    <a href="mailto:info@i2tocr.com">info@i2tocr.com</a>
+                </p>
+                <p><strong>Response Time:</strong> We typically respond within 24 hours</p>
+                <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM to 5:00 PM (Your Timezone)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- === FOOTER SECTION === -->
+    <!-- ======================================================================= -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-column about">
+                    <h3>i2t OCR</h3>
+                    <p>Convert images to text quickly and accurately using advanced AI-powered optical character recognition technology.</p>
+                </div>
+
+                <div class="footer-column links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#ocr-tool">Try OCR</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column legal">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a></p>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> i2t OCR. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+    <!-- === JAVASCRIPT === -->
+    <!-- ======================================================================= -->
+    <script>
+        /**
+         * Initialize Support Page
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // iOS App CTA button functionality
+            document.getElementById('iosAppCta').addEventListener('click', function() {
+                alert('The iOS App is Coming Soon! Stay tuned for updates.');
+                // Replace with actual App Store link when available:
+                // window.open('https://apps.apple.com/app/your-app-id', '_blank');
+            });
+
+            // Support form submission
+            document.getElementById('supportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+
+                // Reset form
+                this.reset();
+
+                // Scroll to success message
+                successMessage.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            });
+
+            // Scroll to support section
+            document.getElementById('scrollToSupportBtn').addEventListener('click', function() {
+                const supportSection = document.getElementById('support');
+                supportSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        /**
+         * Sticky header effect
+         */
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        /**
+         * Placeholder functions for support features
+         */
+        function startLiveChat() {
+            alert('🚀 Live chat feature would open here. In a real implementation, this would connect to your chat service like Intercom, Drift, or a custom solution.');
+        }
+
+        function openKnowledgeBase() {
+            alert('📚 Knowledge base would open here. This would link to your documentation site (e.g., GitBook, Notion, or custom docs).');
+        }
+    </script>
+</body>
+
+</html>
