@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support & Help Center - i2t OCR</title>
+    <title>Contact Support - i2t OCR</title>
 
     <!-- Meta & Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
@@ -67,58 +67,6 @@
             padding: 5rem 0;
         }
 
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .support-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--backdrop-blur);
-            -webkit-backdrop-filter: var(--backdrop-blur);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: var(--glass-shadow);
-        }
-
-        .support-card:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.5);
-        }
-
-        .support-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
-            font-size: 2.2rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .support-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .support-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
         /* Contact Form */
         .contact-form-container {
             background: var(--glass-bg);
@@ -129,6 +77,9 @@
             padding: 3rem;
             margin-top: 3rem;
             box-shadow: var(--glass-shadow);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-form-container h2 {
@@ -215,6 +166,9 @@
             padding: 2.5rem;
             margin-top: 3rem;
             box-shadow: var(--glass-shadow);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-info h3 {
@@ -297,10 +251,6 @@
                 min-width: auto;
                 margin-bottom: 0.25rem;
             }
-            
-            .support-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 480px) {
@@ -310,10 +260,6 @@
             
             .contact-form-container {
                 padding: 1.5rem;
-            }
-            
-            .support-card {
-                padding: 2rem;
             }
         }
     </style>
@@ -326,7 +272,7 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
+                <div class="logo" onclick="window.location.href='index.html'">
                     <img src="logo.png" alt="i2t OCR Logo" class="logo-image">
                     <span>i2t OCR</span>
                 </div>
@@ -342,11 +288,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>We're Here to Help</h1>
-                    <p>Get support for i2t OCR services. Our team is ready to assist you with any questions or issues you may have.</p>
-                    <button class="btn btn-primary btn-large" id="scrollToSupportBtn">
-                        Get Support Now
-                    </button>
+                    <h1>Contact Support</h1>
+                    <p>Need help with i2t OCR? Send us a message and our team will get back to you as soon as possible.</p>
                 </div>
                 <div class="hero-image">
                     <i class="fas fa-headset"></i>
@@ -360,50 +303,6 @@
     <!-- ======================================================================= -->
     <section class="support-section" id="support">
         <div class="container">
-            <div class="section-title">
-                <h2>Support & Help Center</h2>
-                <p>Choose how you'd like to get help with i2t OCR</p>
-            </div>
-
-            <!-- Support Options Grid -->
-            <div class="support-grid">
-                <!-- Email Support Card -->
-                <div class="support-card">
-                    <div class="support-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email Support</h3>
-                    <p>Send us a detailed message and we'll get back to you within 24 hours with a solution.</p>
-                    <a href="mailto:support@i2tocr.com" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Email Us
-                    </a>
-                </div>
-
-                <!-- Live Chat Card -->
-                <div class="support-card">
-                    <div class="support-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Live Chat</h3>
-                    <p>Chat directly with our support team for immediate assistance during business hours.</p>
-                    <button class="btn btn-primary" onclick="startLiveChat()">
-                        <i class="fas fa-comment-dots"></i> Start Chat
-                    </button>
-                </div>
-
-                <!-- Knowledge Base Card -->
-                <div class="support-card">
-                    <div class="support-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Knowledge Base</h3>
-                    <p>Browse our comprehensive documentation and FAQ for instant answers.</p>
-                    <button class="btn btn-primary" onclick="openKnowledgeBase()">
-                        <i class="fas fa-search"></i> View Docs
-                    </button>
-                </div>
-            </div>
-
             <!-- Contact Form -->
             <div class="contact-form-container">
                 <h2>Send us a Message</h2>
@@ -448,12 +347,7 @@
                     <strong>Technical Support:</strong> 
                     <a href="mailto:support@i2tocr.com">support@i2tocr.com</a>
                 </p>
-                <p>
-                    <strong>General Inquiries:</strong> 
-                    <a href="mailto:info@i2tocr.com">info@i2tocr.com</a>
-                </p>
-                <p><strong>Response Time:</strong> We typically respond within 24 hours</p>
-                <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM to 5:00 PM (Your Timezone)</p>
+                <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM to 5:00 PM</p>
             </div>
         </div>
     </section>
@@ -475,8 +369,6 @@
                     <ul>
                         <li><a href="index.html#ocr-tool">Try OCR</a></li>
                         <li><a href="index.html#features">Features</a></li>
-                        <li><a href="index.html#how-it-works">How It Works</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </div>
 
@@ -492,7 +384,7 @@
                     <h3>Contact Us</h3>
                     <p>Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a></p>
                     <div class="social-icons">
-                        <a href="#" target="_blank" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/company/100744466/admin/dashboard/" target="_blank" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -547,15 +439,6 @@
                 }, 5000);
             });
 
-            // Scroll to support section
-            document.getElementById('scrollToSupportBtn').addEventListener('click', function() {
-                const supportSection = document.getElementById('support');
-                supportSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-
             // Add smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -582,17 +465,6 @@
                 header.style.boxShadow = 'none';
             }
         });
-
-        /**
-         * Placeholder functions for support features
-         */
-        function startLiveChat() {
-            alert('🚀 Live chat feature would open here. In a real implementation, this would connect to your chat service like Intercom, Drift, or a custom solution.');
-        }
-
-        function openKnowledgeBase() {
-            alert('📚 Knowledge base would open here. This would link to your documentation site (e.g., GitBook, Notion, or custom docs).');
-        }
     </script>
 </body>
 

@@ -27,7 +27,7 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">
+                <div class="logo" onclick="window.location.href='index.html'">
                     <img src="logo.png" alt="i2t OCR Logo" class="logo-image">
                     <span>i2t OCR</span>
                 </div>
@@ -49,33 +49,23 @@
                 </div>
 
                 <div class="hero-image">
-                    <div class="app-demo">
-                        <div class="phone-mockup">
-                            <div class="notch"></div>
-                            <div class="phone-screen">
-                                <div class="app-interface">
-                                    <div class="app-header">
-                                        <i class="fas fa-camera"></i>
-                                        <span>OCR Scanner</span>
-                                    </div>
-                                    <div class="app-content">
-                                        <div class="scan-area">
-                                            <div class="scan-animation">
-                                                <div class="scan-line"></div>
-                                            </div>
-                                            <p>Point camera at text</p>
-                                        </div>
-                                        <div class="app-buttons">
-                                            <button class="app-btn">
-                                                <i class="fas fa-camera"></i> Scan
-                                            </button>
-                                            <button class="app-btn">
-                                                <i class="fas fa-image"></i> Gallery
-                                            </button>
-                                        </div>
+                    <div class="paper-scanner">
+                        <div class="scanner-container">
+                            <div class="paper-sheet">
+                                <div class="paper-content">
+                                    <div class="paper-text">
+                                        <h3>Document Title</h3>
+                                        <p>This is a sample document that demonstrates how OCR technology can extract text from paper documents quickly and accurately.</p>
+                                        <p>With i2t OCR, you can convert any printed text into editable digital format in seconds.</p>
                                     </div>
                                 </div>
+                                <div class="scan-animation">
+                                    <div class="scan-line"></div>
+                                </div>
                             </div>
+                            <div class="scanner-light"></div>
+                        </div>
+                        <div class="scanner-controls">
                         </div>
                     </div>
                 </div>
@@ -84,7 +74,7 @@
     </section>
 
     <!-- OCR Tool Section -->
-    <section class="ocr-tool-section" id="ocr-tool">
+    <section class="ocr-tool-section" id="ocr-too∏l">
         <div class="container">
             <div class="section-title">
                 <h2>Live OCR Tool</h2>
@@ -160,38 +150,13 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-language"></i></div>
                     <h3>Multiple Languages</h3>
-                    <p>Supports 50+ languages including English, German, French, Persian.</p>
+                    <p>Supports most languages ​​such as English, Persian, German, French, Japanese.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-file-export"></i></div>
                     <h3>Export Options</h3>
                     <p>Save text as PDF, DOCX, TXT and more.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-title">
-                <h2>How It Works</h2>
-                <p>Extract text from images in just 3 steps</p>
-            </div>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Take or Upload Photo</h3>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Select Text Area</h3>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Your Text</h3>
                 </div>
             </div>
         </div>
@@ -235,8 +200,6 @@
                     <ul>
                         <li><a href="#ocr-tool">Try OCR</a></li>
                         <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </div>
 
@@ -252,7 +215,9 @@
                     <h3>Contact Us</h3>
                     <p>Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a></p>
                     <div class="social-icons">
-                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/100744466/admin/dashboard/" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -264,3 +229,4 @@
     </footer>
     <script src="script.js"></script>
 </body>
+</html>
