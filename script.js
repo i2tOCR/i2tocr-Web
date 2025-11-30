@@ -14,7 +14,6 @@
 const OCR_API_CONFIG = {
     ENDPOINT: 'https://i2tocr.com/ocr',
     MIN_LOADING_TIME_MS: 3000,
-    TESSERACT_CONFIG: '--psm 4'
 };
 
 // =======================================================================
@@ -290,14 +289,64 @@ function simulateLoading() {
     });
 }
 
+// =======================================================================
+// === FILE HANDLING UTILITY (NEW FUNCTION) ===
+// =======================================================================
+
+/**
+ * Converts the selected image file into a JPEG Blob using the Canvas API.
+ * This is used to standardize the file format before sending to the API.
+ * @param {File} file - The original image file.
+ * @returns {Promise<Blob>} A promise that resolves with the JPEG Blob.
+ */
+function convertImageToJpeg(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (readerEvent) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert canvas content to Blob (JPEG format, 0.9 quality)
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        resolve(blob);
+                    } else {
+                        reject(new Error("Canvas failed to create JPEG blob."));
+                    }
+                }, 'image/jpeg', 0.8); // 0.9 is the quality factor
+            };
+            img.onerror = () => {
+                reject(new Error("Failed to load image for canvas conversion."));
+            };
+            img.src = readerEvent.target.result;
+        };
+        reader.onerror = (error) => {
+            reject(new Error("FileReader failed to read image data."));
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+
+// =======================================================================
+// === OCR PROCESSING (MODIFIED FUNCTIONS) ===
+// =======================================================================
+
 /**
  * Send OCR request to API
+ * MODIFIED to accept a Blob (the converted JPEG image)
  */
-async function sendOcrApiRequest(file, selectedLang) {
+async function sendOcrApiRequest(imageBlob, selectedLang) {
     const formData = new FormData();
-    formData.append('file', file);
+    // ⭐️ Use the converted Blob and assign a standard filename for the server
+    formData.append('file', imageBlob, 'image.jpg'); 
     formData.append('lang', selectedLang);
-    formData.append('config', OCR_API_CONFIG.TESSERACT_CONFIG);
     
     const response = await fetch(OCR_API_CONFIG.ENDPOINT, {
         method: 'POST',
@@ -316,6 +365,7 @@ async function sendOcrApiRequest(file, selectedLang) {
 
 /**
  * Submit OCR request and handle response
+ * MODIFIED to convert file to JPEG Blob first.
  */
 async function submitOcrRequest(selectedLang) {
     const file = elements.imageUpload.files[0];
@@ -327,9 +377,13 @@ async function submitOcrRequest(selectedLang) {
     elements.processButton.disabled = true;
 
     try {
+        // ⭐️ STEP 1: Convert the original file to a JPEG Blob
+        const jpegBlob = await convertImageToJpeg(file);
+
         // Run API request and minimum loading time concurrently
         const [ocrData] = await Promise.all([
-            sendOcrApiRequest(file, selectedLang),
+            // ⭐️ STEP 2: Send the new JPEG Blob to the API
+            sendOcrApiRequest(jpegBlob, selectedLang),
             simulateLoading()
         ]);
 
