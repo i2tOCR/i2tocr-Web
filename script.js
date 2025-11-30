@@ -299,11 +299,18 @@ function simulateLoading() {
  * @param {File} file - The original image file.
  * @returns {Promise<Blob>} A promise that resolves with the JPEG Blob.
  */
+/**
+ * 
+ * @param {File} file
+ * @returns {Promise<Blob>}
+ */
 function convertImageToJpeg(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
+
         reader.onload = (readerEvent) => {
             const img = new Image();
+
             img.onload = () => {
                 const canvas = document.createElement('canvas');
                 canvas.width = img.width;
@@ -311,28 +318,28 @@ function convertImageToJpeg(file) {
                 
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
-                
-                // Convert canvas content to Blob (JPEG format, 0.9 quality)
+
                 canvas.toBlob((blob) => {
                     if (blob) {
                         resolve(blob);
                     } else {
                         reject(new Error("Canvas failed to create JPEG blob."));
                     }
-                }, 'image/jpeg', 0.8); // 0.9 is the quality factor
+                }, 'image/jpeg', 0.8);
             };
+
             img.onerror = () => {
                 reject(new Error("Failed to load image for canvas conversion."));
             };
             img.src = readerEvent.target.result;
         };
+
         reader.onerror = (error) => {
             reject(new Error("FileReader failed to read image data."));
         };
         reader.readAsDataURL(file);
     });
 }
-
 
 // =======================================================================
 // === OCR PROCESSING (MODIFIED FUNCTIONS) ===
