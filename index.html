@@ -1,232 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OCR App - Convert Images to Text</title>
 
     <!-- Meta & Favicon -->
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png" />
 
     <!-- External Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css?v=1763991245">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css?v=1763991245" />
 
     <!-- External Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Background Effects -->
     <div id="particles-js"></div>
     <div class="digital-rain" id="digitalRain"></div>
 
     <!-- Header Section -->
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo" onclick="window.location.href='index.html'">
-                    <img src="logo.png" alt="i2t OCR Logo" class="logo-image">
-                    <span>i2t OCR</span>
-                </div>
-                <button class="cta-button" id="iosAppCta">iOS App</button>
-            </nav>
-        </div>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo" onclick="window.location.href = 'index.html'">
+            <img src="logo.png" alt="i2t OCR Logo" class="logo-image" />
+            <span>i2t OCR</span>
+          </div>
+          <button class="cta-button" id="iosAppCta">iOS App</button>
+        </nav>
+      </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="scan-highlight">Free Convert Images to Text in Seconds</h1>
-                    <p>Our OCR app helps you extract text from images quickly and accurately.</p>
-                    <button class="btn btn-primary" id="scrollToOcrBtn">
-                        Try OCR Now
-                    </button>
-                </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="scan-highlight">
+              Free Convert Images to Text in Seconds
+            </h1>
+            <p>
+              Our OCR app helps you extract text from images quickly and
+              accurately.
+            </p>
+            <button class="btn btn-primary" id="scrollToOcrBtn">
+              Try OCR Now
+            </button>
+          </div>
 
-                <div class="hero-image">
-                    <div class="paper-scanner">
-                        <div class="scanner-container">
-                            <div class="paper-sheet">
-                                <div class="paper-content">
-                                    <div class="paper-text">
-                                        <h3>Document Title</h3>
-                                        <p>This is a sample document that demonstrates how OCR technology can extract text from paper documents quickly and accurately.</p>
-                                        <p>With i2t OCR, you can convert any printed text into editable digital format in seconds.</p>
-                                    </div>
-                                </div>
-                                <div class="scan-animation">
-                                    <div class="scan-line"></div>
-                                </div>
-                            </div>
-                            <div class="scanner-light"></div>
-                        </div>
-                        <div class="scanner-controls">
-                        </div>
+          <div class="hero-image">
+            <div class="paper-scanner">
+              <div class="scanner-container">
+                <div class="paper-sheet">
+                  <div class="paper-content">
+                    <div class="paper-text">
+                      <h3>Document Title</h3>
+                      <p>
+                        This is a sample document that demonstrates how OCR
+                        technology can extract text from paper documents quickly
+                        and accurately.
+                      </p>
+                      <p>
+                        With i2t OCR, you can convert any printed text into
+                        editable digital format in seconds.
+                      </p>
                     </div>
+                  </div>
+                  <div class="scan-animation">
+                    <div class="scan-line"></div>
+                  </div>
                 </div>
+                <div class="scanner-light"></div>
+              </div>
+              <div class="scanner-controls"></div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- OCR Tool Section -->
     <section class="ocr-tool-section" id="ocr-tool">
-        <div class="container">
-            <div class="section-title">
-                <h2>Live OCR Tool</h2>
-                <p>Upload your file to instantly extract text.</p>
-            </div>
-
-            <div class="ocr-interface-box">
-                <input type="file" id="imageUpload" accept="image/*" class="file-input-hidden">
-
-                <div class="upload-area" id="uploadArea">
-                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                    <p>Drag and drop your image here, or</p>
-                    <button class="btn btn-primary" id="selectFileBtn">
-                        Select File from Device
-                    </button>
-                </div>
-
-                <div class="tool-comparison" id="toolComparison">
-                    <div class="tool-item">
-                        <h4>Uploaded Image (Input)</h4>
-                        <div class="image-preview" id="imagePreview"></div>
-                    </div>
-
-                    <div class="tool-item">
-                        <h4>Extracted Text (Output)</h4>
-                        <div class="text-output">
-                            <textarea id="extractedText"></textarea>
-                            <button id="copyButton" class="btn btn-secondary">
-                                <i class="fas fa-copy"></i> Copy Text
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="process-controls" id="processControls">
-                    <button id="processButton" class="btn btn-primary btn-large">
-                        <i class="fas fa-robot"></i> Run OCR
-                    </button>
-                    <button id="resetButton" class="btn btn-secondary btn-large">
-                        <i class="fas fa-redo"></i> New Scan
-                    </button>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title">
+          <h2>Live OCR Tool</h2>
+          <p>Upload your file to instantly extract text.</p>
         </div>
+
+        <div class="ocr-interface-box">
+          <input
+            type="file"
+            id="imageUpload"
+            accept="image/*"
+            class="file-input-hidden"
+          />
+
+          <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <p>Drag and drop your image here, or</p>
+            <button class="btn btn-primary" id="selectFileBtn">
+              Select File from Device
+            </button>
+          </div>
+
+          <div class="tool-comparison" id="toolComparison">
+            <div class="tool-item">
+              <h4>Uploaded Image (Input)</h4>
+              <div class="image-preview" id="imagePreview"></div>
+            </div>
+
+            <div class="tool-item">
+              <h4>Extracted Text (Output)</h4>
+              <div class="text-output">
+                <textarea id="extractedText"></textarea>
+                <button id="copyButton" class="btn btn-secondary">
+                  <i class="fas fa-copy"></i> Copy Text
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-controls" id="processControls">
+            <button id="processButton" class="btn btn-primary btn-large">
+              <i class="fas fa-robot"></i> Run OCR
+            </button>
+            <button id="resetButton" class="btn btn-secondary btn-large">
+              <i class="fas fa-redo"></i> New Scan
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Neural Network Section -->
     <section class="neural-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>AI-Powered Technology</h2>
-                <p>Our advanced neural network processes images with incredible accuracy</p>
-            </div>
-            <div class="neural-network" id="neuralNetwork"></div>
+      <div class="container">
+        <div class="section-title">
+          <h2>AI-Powered Technology</h2>
+          <p>
+            Our advanced neural network processes images with incredible
+            accuracy
+          </p>
         </div>
+        <div class="neural-network" id="neuralNetwork"></div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Powerful Features</h2>
-                <p>Extract text from images with high accuracy using advanced OCR.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-camera"></i></div>
-                    <h3>Scan from Image</h3>
-                    <p>Convert your photos into editable text instantly.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-language"></i></div>
-                    <h3>Multiple Languages</h3>
-                    <p>Supports most languages ​​such as English, Persian, German, French, Japanese.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-file-export"></i></div>
-                    <h3>Export Options</h3>
-                    <p>Save text as PDF, DOCX, TXT and more.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title">
+          <h2>Powerful Features</h2>
+          <p>Extract text from images with high accuracy using advanced OCR.</p>
         </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-camera"></i></div>
+            <h3>Scan from Image</h3>
+            <p>Convert your photos into editable text instantly.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-language"></i></div>
+            <h3>Multiple Languages</h3>
+            <p>
+              Supports most languages ​​such as English, Persian, German,
+              French, Japanese.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-file-export"></i></div>
+            <h3>Export Options</h3>
+            <p>Save text as PDF, DOCX, TXT and more.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Language Selection Modal -->
     <div class="modal-backdrop" id="languageModalBackdrop">
-        <div class="modal-content">
-            <h3>Select OCR Language</h3>
+      <div class="modal-content">
+        <h3>Select OCR Language</h3>
 
-            <div class="modal-body">
-                <select id="modalOcrLang" class="language-dropdown-modal">
-                    <option value="" disabled selected>--- Choose Language ---</option>
-                    <option value="eng">English</option>
-                    <option value="fas">Farsi</option>
-                    <option value="fra">French</option>
-                    <option value="deu">German</option>
-                    <option value="jpn">Japanese</option>
-                </select>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="confirmLangButton">Run OCR</button>
-                <button class="btn btn-secondary" id="cancelLangButton">Cancel</button>
-            </div>
+        <div class="modal-body">
+          <select id="modalOcrLang" class="language-dropdown-modal">
+            <option value="" disabled selected>--- Choose Language ---</option>
+            <option value="eng">English</option>
+            <option value="fas">Farsi</option>
+            <option value="fra">French</option>
+            <option value="deu">German</option>
+            <option value="jpn">Japanese</option>
+          </select>
         </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="confirmLangButton">
+            Run OCR
+          </button>
+          <button class="btn btn-secondary" id="cancelLangButton">
+            Cancel
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Footer Section -->
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column about">
-                    <h3>i2t OCR</h3>
-                    <p>Convert images to text quickly and accurately using advanced AI-powered optical character
-                        recognition technology.</p>
-                </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column about">
+            <h3>i2t OCR</h3>
+            <p>
+              Convert images to text quickly and accurately using advanced
+              AI-powered optical character recognition technology.
+            </p>
+          </div>
 
-                <div class="footer-column links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#ocr-tool">Try OCR</a></li>
-                        <li><a href="#features">Features</a></li>
-                    </ul>
-                </div>
+          <div class="footer-column links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#ocr-tool">Try OCR</a></li>
+              <li><a href="#features">Features</a></li>
+            </ul>
+          </div>
 
-                <div class="footer-column legal">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="support.html">Support</a></li>
-                    </ul>
-                </div>
+          <div class="footer-column legal">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="support.html">Support</a></li>
+            </ul>
+          </div>
 
-                <div class="footer-column contact">
-                    <h3>Contact Us</h3>
-                    <p>Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a></p>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/company/100744466/admin/dashboard/" target="_blank" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
+          <div class="footer-column contact">
+            <h3>Contact Us</h3>
+            <p>
+              Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a>
+            </p>
+            <div class="social-icons">
+              <a
+                href="https://www.linkedin.com/company/100744466/admin/dashboard/"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> i2t OCR. All rights reserved.</p>
-            </div>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; <span id="currentYear"></span> i2t OCR. All rights reserved.
+          </p>
+        </div>
+      </div>
     </footer>
-    <script src="script.js"></script>
-</body>
-</html><script src="./script.js?v=2"></script>
+    <script src="/script.js?v=2"></script>
+  </body>
+</html>
