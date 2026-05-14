@@ -40,12 +40,16 @@ function activateTab(engine) {
 
   if (engine === 'tesseract') {
     tTess.className  = 'engine-tab active-teal';
-    badge.textContent = 'Tesseract.js';
-    badge.className   = 'ocr-engine-badge teal';
+    if (badge) {
+      badge.textContent = 'Tesseract.js';
+      badge.className   = 'ocr-engine-badge teal';
+    }
   } else {
     tCloud.className = 'engine-tab active-purple';
-    badge.textContent = 'OCR Cloud';
-    badge.className   = 'ocr-engine-badge purple';
+    if (badge) {
+      badge.textContent = 'OCR Cloud';
+      badge.className   = 'ocr-engine-badge purple';
+    }
   }
 }
 
@@ -409,14 +413,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ── File input ────────────────────────────────────────────────
+  // ── File input (zone is <label for="file-input"> — native picker + change handler) ──
   var fileInput = g('file-input');
-
-  // The upload zone click should trigger file input
-  // IMPORTANT: file input has pointer-events:none in CSS so zone click always fires
-  uploadZone.addEventListener('click', function() {
-    if (fileInput) fileInput.click();
-  });
 
   if (fileInput) {
     fileInput.addEventListener('change', function() {
@@ -517,7 +515,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (runBtn) {
     runBtn.addEventListener('click', function() {
       if (!currentFile) return;
-      openModal();   // always pick language for manual re-run
+      if (currentEngine === 'tesseract') {
+        runOcr('eng');
+      } else {
+        openModal();
+      }
     });
   }
 

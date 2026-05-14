@@ -156,8 +156,7 @@
 
       <!-- Upload zone -->
       <div id="upload-area">
-        <div class="upload-zone" id="upload-zone">
-          <!-- pointer-events:none in CSS; JS calls fileInput.click() on zone click -->
+        <label class="upload-zone" id="upload-zone" for="file-input">
           <input type="file" id="file-input" accept="image/*" tabindex="-1">
           <div class="upload-icon-wrap">
             <i class="fas fa-cloud-upload-alt" style="color:var(--purple-light)"></i>
@@ -172,7 +171,7 @@
             <span class="format-chip">BMP</span>
             <span class="format-chip">TIFF</span>
           </div>
-        </div>
+        </label>
       </div>
 
       <!-- Workspace (shown after file selected) -->
@@ -392,6 +391,6 @@
 
 <!-- Tesseract.js v5 — browser-side OCR -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-<script src="js/app.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
