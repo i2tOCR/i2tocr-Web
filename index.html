@@ -1,273 +1,397 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OCR App - Convert Images to Text</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I2TOCR — Smart Text Reader</title>
+  <meta name="description" content="Extract text from any image in seconds. Free OCR with two engines: on-device Tesseract and cloud-powered server OCR.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-    <!-- Meta & Favicon -->
-    <link rel="icon" type="image/png" href="logo.png" />
+<canvas id="particles-canvas"></canvas>
 
-    <!-- External Stylesheets -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/style.css?v=1763991245" />
+<!-- ═══ HEADER ═══════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <rect x="8" y="2" width="8" height="4" rx="1"/>
+            <path d="M9 12h6M9 16h4"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text">I2T<span>OCR</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#ocr-tool">Try OCR</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How it Works</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#" class="nav-cta" id="nav-cta">iOS App</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <!-- External Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  </head>
+<!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
 
-  <body>
-    <!-- Background Effects -->
-    <div id="particles-js"></div>
-    <div class="digital-rain" id="digitalRain"></div>
-
-    <!-- Header Section -->
-    <header>
-      <div class="container">
-        <nav class="navbar">
-          <div class="logo" onclick="window.location.href = 'index.html'">
-            <img src="logo.png" alt="i2t OCR Logo" class="logo-image" />
-            <span>i2t OCR</span>
-          </div>
-          <button class="cta-button" id="iosAppCta">iOS App</button>
-        </nav>
+      <div class="hero-text">
+        <div class="hero-badge"><span class="dot"></span>Smart Text Reader</div>
+        <h1 class="hero-title">
+          Convert Images<br>to Text <span class="accent">Instantly</span>
+        </h1>
+        <p class="hero-desc">
+          Using AI, extract text from any image in seconds.
+          Two engines: on-device Tesseract (private) and server-side OCR (accurate) — just like the iOS app.
+        </p>
+        <div class="hero-actions">
+          <a href="#ocr-tool" class="btn btn-primary btn-lg"><i class="fas fa-magic"></i> Try OCR Free</a>
+          <a href="#how-it-works" class="btn btn-ghost btn-lg">How it Works</a>
+        </div>
       </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1 class="scan-highlight">
-              Free Convert Images to Text in Seconds
-            </h1>
-            <p>
-              Our OCR app helps you extract text from images quickly and
-              accurately.
-            </p>
-            <button class="btn btn-primary" id="scrollToOcrBtn">
-              Try OCR Now
-            </button>
+      <div class="phone-showcase">
+        <div class="phone-orbit">
+          <div class="orbit-card vision">
+            <div class="icon" style="color:var(--teal)">👁</div>
+            <div>
+              <div style="color:var(--teal);font-weight:700;font-size:.7rem">Vision AI</div>
+              <div style="font-size:.65rem">Local · Private</div>
+            </div>
           </div>
-
-          <div class="hero-image">
-            <div class="paper-scanner">
-              <div class="scanner-container">
-                <div class="paper-sheet">
-                  <div class="paper-content">
-                    <div class="paper-text">
-                      <h3>Document Title</h3>
-                      <p>
-                        This is a sample document that demonstrates how OCR
-                        technology can extract text from paper documents quickly
-                        and accurately.
-                      </p>
-                      <p>
-                        With i2t OCR, you can convert any printed text into
-                        editable digital format in seconds.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="scan-animation">
-                    <div class="scan-line"></div>
-                  </div>
-                </div>
-                <div class="scanner-light"></div>
+          <div class="orbit-card ocr">
+            <div class="icon" style="color:var(--purple-light)">☁</div>
+            <div>
+              <div style="color:var(--purple-light);font-weight:700;font-size:.7rem">OCR Cloud</div>
+              <div style="font-size:.65rem">Server · Accurate</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-onboarding">
+              <span class="mock-skip">Skip</span>
+              <div class="mock-icon-circle">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <rect x="8" y="2" width="8" height="4" rx="1"/>
+                  <line x1="9" y1="13" x2="15" y2="13"/>
+                  <line x1="9" y1="17" x2="13" y2="17"/>
+                </svg>
               </div>
-              <div class="scanner-controls"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- OCR Tool Section -->
-    <section class="ocr-tool-section" id="ocr-tool">
-      <div class="container">
-        <div class="section-title">
-          <h2>Live OCR Tool</h2>
-          <p>Upload your file to instantly extract text.</p>
-        </div>
-
-        <div class="ocr-interface-box">
-          <input
-            type="file"
-            id="imageUpload"
-            accept="image/*"
-            class="file-input-hidden"
-          />
-
-          <div class="upload-area" id="uploadArea">
-            <i class="fas fa-cloud-upload-alt upload-icon"></i>
-            <p>Drag and drop your image here, or</p>
-            <button class="btn btn-primary" id="selectFileBtn">
-              Select File from Device
-            </button>
-          </div>
-
-          <div class="tool-comparison" id="toolComparison">
-            <div class="tool-item">
-              <h4>Uploaded Image (Input)</h4>
-              <div class="image-preview" id="imagePreview"></div>
-            </div>
-
-            <div class="tool-item">
-              <h4>Extracted Text (Output)</h4>
-              <div class="text-output">
-                <textarea id="extractedText"></textarea>
-                <button id="copyButton" class="btn btn-secondary">
-                  <i class="fas fa-copy"></i> Copy Text
-                </button>
+              <div>
+                <div class="mock-badge">I2TOCR</div>
+                <div class="mock-title">Smart Text<br>Reader</div>
+                <div class="mock-desc" style="margin-top:8px">Extract text from any image<br>in less than a few seconds</div>
+              </div>
+              <div class="mock-dots">
+                <div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot active"></div>
+              </div>
+              <div class="mock-btn">
+                <i class="fas fa-chevron-left" style="font-size:.6rem"></i> Next
               </div>
             </div>
           </div>
-
-          <div class="process-controls" id="processControls">
-            <button id="processButton" class="btn btn-primary btn-large">
-              <i class="fas fa-robot"></i> Run OCR
-            </button>
-            <button id="resetButton" class="btn btn-secondary btn-large">
-              <i class="fas fa-redo"></i> New Scan
-            </button>
-          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Neural Network Section -->
-    <section class="neural-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>AI-Powered Technology</h2>
-          <p>
-            Our advanced neural network processes images with incredible
-            accuracy
-          </p>
-        </div>
-        <div class="neural-network" id="neuralNetwork"></div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-      <div class="container">
-        <div class="section-title">
-          <h2>Powerful Features</h2>
-          <p>Extract text from images with high accuracy using advanced OCR.</p>
-        </div>
+<!-- ═══ OCR TOOL ══════════════════════════════════════════════════ -->
+<section class="ocr-section" id="ocr-tool">
+  <div class="container">
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-camera"></i></div>
-            <h3>Scan from Image</h3>
-            <p>Convert your photos into editable text instantly.</p>
-          </div>
+    <div class="ocr-section-head">
+      <div class="section-label">Live Tool</div>
+      <h2 class="section-title">Extract Text Now</h2>
+      <p class="section-desc">Select an engine, upload an image, and get your text.</p>
 
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-language"></i></div>
-            <h3>Multiple Languages</h3>
-            <p>
-              Supports most languages ​​such as English, Persian, German,
-              French, Japanese.
-            </p>
-          </div>
+      <!-- ENGINE TABS — these switch between on-device and cloud -->
+      <div class="engine-tabs" style="margin-top:28px">
 
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-file-export"></i></div>
-            <h3>Export Options</h3>
-            <p>Save text as PDF, DOCX, TXT and more.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <button type="button" class="engine-tab active-teal" id="tab-tesseract">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Tesseract.js
+          <span style="font-size:.7rem;opacity:.65;font-weight:400">(on-device)</span>
+        </button>
 
-    <!-- Language Selection Modal -->
-    <div class="modal-backdrop" id="languageModalBackdrop">
-      <div class="modal-content">
-        <h3>Select OCR Language</h3>
+        <button type="button" class="engine-tab" id="tab-ocrcloud">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+          </svg>
+          OCR Cloud
+          <span style="font-size:.7rem;opacity:.65;font-weight:400">(server)</span>
+        </button>
 
-        <div class="modal-body">
-          <select id="modalOcrLang" class="language-dropdown-modal">
-            <option value="" disabled selected>--- Choose Language ---</option>
-            <option value="eng">English</option>
-            <option value="fas">Farsi</option>
-            <option value="fra">French</option>
-            <option value="deu">German</option>
-            <option value="jpn">Japanese</option>
-          </select>
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn btn-primary" id="confirmLangButton">
-            Run OCR
-          </button>
-          <button class="btn btn-secondary" id="cancelLangButton">
-            Cancel
-          </button>
-        </div>
       </div>
     </div>
 
-    <!-- Footer Section -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-column about">
-            <h3>i2t OCR</h3>
-            <p>
-              Convert images to text quickly and accurately using advanced
-              AI-powered optical character recognition technology.
-            </p>
-          </div>
+    <!-- OCR BOX -->
+    <div class="ocr-box">
 
-          <div class="footer-column links">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#ocr-tool">Try OCR</a></li>
-              <li><a href="#features">Features</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column legal">
-            <h3>Legal</h3>
-            <ul>
-              <li><a href="privacy-policy.html">Privacy Policy</a></li>
-              <li><a href="support.html">Support</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column contact">
-            <h3>Contact Us</h3>
-            <p>
-              Email: <a href="mailto:support@i2tocr.com">support@i2tocr.com</a>
-            </p>
-            <div class="social-icons">
-              <a
-                href="https://www.linkedin.com/company/100744466/admin/dashboard/"
-                target="_blank"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </div>
+      <!-- Header bar -->
+      <div class="ocr-box-header">
+        <div class="ocr-status">
+          <span class="status-dot"></span>
+          <span id="status-text">Ready</span>
         </div>
+        <span class="ocr-engine-badge teal" id="engine-badge">Tesseract.js</span>
+      </div>
 
-        <div class="footer-bottom">
-          <p>
-            &copy; <span id="currentYear"></span> i2t OCR. All rights reserved.
-          </p>
+      <!-- Upload zone -->
+      <div id="upload-area">
+        <div class="upload-zone" id="upload-zone">
+          <!-- pointer-events:none in CSS; JS calls fileInput.click() on zone click -->
+          <input type="file" id="file-input" accept="image/*" tabindex="-1">
+          <div class="upload-icon-wrap">
+            <i class="fas fa-cloud-upload-alt" style="color:var(--purple-light)"></i>
+          </div>
+          <div class="upload-title">Drop your image here</div>
+          <div class="upload-subtitle">or click to browse from device</div>
+          <div class="upload-formats">
+            <span class="format-chip">JPG</span>
+            <span class="format-chip">PNG</span>
+            <span class="format-chip">WEBP</span>
+            <span class="format-chip">GIF</span>
+            <span class="format-chip">BMP</span>
+            <span class="format-chip">TIFF</span>
+          </div>
         </div>
       </div>
-    </footer>
-    <script src="/script.js?v=2"></script>
-  </body>
+
+      <!-- Workspace (shown after file selected) -->
+      <div class="ocr-workspace" id="workspace">
+
+        <!-- panels + loading overlay -->
+        <div class="workspace-panels">
+
+          <!-- Loading overlay — covers both panels -->
+          <div id="ocr-loading">
+            <div class="loader-ring"></div>
+            <div class="loader-text" id="loading-text">Starting…</div>
+          </div>
+
+          <!-- Input image -->
+          <div class="panel">
+            <div class="panel-header">
+              <span>
+                <i class="fas fa-image" style="color:var(--purple-light);margin-right:6px"></i>
+                Input Image
+              </span>
+            </div>
+            <div class="panel-body">
+              <div class="image-preview-wrap" id="img-preview"></div>
+            </div>
+          </div>
+
+          <!-- Extracted text -->
+          <div class="panel">
+            <div class="panel-header">
+              <span>
+                <i class="fas fa-align-left" style="color:var(--teal);margin-right:6px"></i>
+                Extracted Text
+              </span>
+              <button type="button" class="btn-icon" id="btn-copy" title="Copy to clipboard">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+            <div class="panel-body">
+              <div class="text-output-wrap">
+                <textarea
+                  class="extracted-text"
+                  id="text-output"
+                  placeholder="Text will appear here after OCR…"
+                  spellcheck="false"
+                ></textarea>
+                <div class="char-count" id="char-count"></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /workspace-panels -->
+
+        <!-- Action buttons -->
+        <div class="workspace-actions">
+          <button type="button" class="btn btn-primary btn-lg" id="btn-run-ocr">
+            <i class="fas fa-robot"></i> Run OCR Again
+          </button>
+          <button type="button" class="btn btn-ghost" id="btn-reset">
+            <i class="fas fa-redo"></i> New Scan
+          </button>
+        </div>
+
+      </div><!-- /workspace -->
+
+    </div><!-- /ocr-box -->
+  </div>
+</section>
+
+<!-- ═══ FEATURES ══════════════════════════════════════════════════ -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">Powerful Features</h2>
+    <p class="section-desc">Everything you need to turn images into editable text.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon teal">👁</div>
+        <div class="feature-title">On-Device Vision</div>
+        <p class="feature-desc">Tesseract.js runs entirely in your browser — no upload, fully private. Like Apple Vision on iOS.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">☁️</div>
+        <div class="feature-title">Cloud OCR Engine</div>
+        <p class="feature-desc">Server-side Tesseract with OpenCV preprocessing for documents, uneven lighting, and complex layouts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon teal">🌐</div>
+        <div class="feature-title">Multiple Languages</div>
+        <p class="feature-desc">English, Persian, German, French, Japanese, Arabic, Chinese, Russian and more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">🔒</div>
+        <div class="feature-title">Privacy First</div>
+        <p class="feature-desc">Tesseract mode never sends data anywhere. Cloud mode discards images immediately after OCR.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon teal">📋</div>
+        <div class="feature-title">Instant Copy</div>
+        <p class="feature-desc">One click copies all extracted text to clipboard, ready to paste anywhere.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">⚡</div>
+        <div class="feature-title">Completely Free</div>
+        <p class="feature-desc">No subscriptions, no premium tiers, no hidden costs. Free forever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ══════════════════════════════════════════════ -->
+<section class="steps-section" id="how-it-works">
+  <div class="container">
+    <div class="section-label">Process</div>
+    <h2 class="section-title">How it Works</h2>
+    <p class="section-desc">Three steps from image to editable text.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Choose Engine</div>
+        <p class="step-desc">Pick Tesseract for private on-device OCR, or OCR Cloud for higher accuracy on complex images.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Upload Image</div>
+        <p class="step-desc">Drag and drop or click to browse — JPG, PNG, WEBP, TIFF and more.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Copy & Use</div>
+        <p class="step-desc">Review the extracted text and copy it to clipboard instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none">
+          <div class="nav-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <rect x="8" y="2" width="8" height="4" rx="1"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">I2T<span>OCR</span></span>
+        </a>
+        <p>Free OCR — convert images to text using AI-powered optical character recognition.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/100744466/" target="_blank" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#ocr-tool">Try OCR</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@i2tocr.com">support@i2tocr.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> I2TOCR. All rights reserved.</span>
+      <span>Free · Private · Fast</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ LANGUAGE MODAL ════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 class="modal-title">Select Language</h2>
+      <p class="modal-subtitle">Choose the language of the text in your image for best results.</p>
+    </div>
+    <select class="lang-select" id="lang-select">
+      <option value="" disabled selected>— Choose Language —</option>
+      <option value="eng">🇺🇸 English</option>
+      <option value="fas">🇮🇷 Farsi (Persian)</option>
+      <option value="fra">🇫🇷 French</option>
+      <option value="deu">🇩🇪 German</option>
+      <option value="jpn">🇯🇵 Japanese</option>
+      <option value="chi_sim">🇨🇳 Chinese (Simplified)</option>
+      <option value="ara">🇸🇦 Arabic</option>
+      <option value="spa">🇪🇸 Spanish</option>
+      <option value="por">🇵🇹 Portuguese</option>
+      <option value="rus">🇷🇺 Russian</option>
+    </select>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary btn-full" id="btn-confirm-lang">
+        <i class="fas fa-robot"></i> Run OCR
+      </button>
+      <button type="button" class="btn btn-ghost" id="btn-cancel-lang" style="white-space:nowrap">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Tesseract.js v5 — browser-side OCR -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>
