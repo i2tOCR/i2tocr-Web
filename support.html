@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — I2TOCR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <rect x="8" y="2" width="8" height="4" rx="1"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text">I2T<span>OCR</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#ocr-tool">Try OCR</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="privacy-policy.html">Privacy</a></li>
+        <li><a href="#" class="nav-cta" id="nav-cta">iOS App</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="section-label">Help Center</div>
+      <h1 class="section-title">Contact Support</h1>
+      <p class="section-desc">Need help with I2TOCR? Send us a message and we'll get back to you as soon as possible.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0 0 80px">
+  <div class="container" style="max-width:720px">
+
+    <div class="content-box">
+      <h2><i class="fas fa-paper-plane" style="color:var(--purple-light);margin-right:8px"></i>Send a Message</h2>
+
+      <form id="support-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="s-name">
+            <i class="fas fa-user" style="margin-right:6px;opacity:0.5"></i>Your Name
+          </label>
+          <input type="text" id="s-name" class="form-input" placeholder="Full name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="s-email">
+            <i class="fas fa-envelope" style="margin-right:6px;opacity:0.5"></i>Email Address
+          </label>
+          <input type="email" id="s-email" class="form-input" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="s-subject">
+            <i class="fas fa-tag" style="margin-right:6px;opacity:0.5"></i>Subject
+          </label>
+          <input type="text" id="s-subject" class="form-input" placeholder="Brief description of your issue" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="s-message">
+            <i class="fas fa-comment" style="margin-right:6px;opacity:0.5"></i>Message
+          </label>
+          <textarea id="s-message" class="form-input" placeholder="Describe your issue in detail…" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-full">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+
+      <div class="success-banner" id="success-banner">
+        <h3>✓ Message Sent!</h3>
+        <p>Thank you for reaching out. We'll reply to your email as soon as possible.</p>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2><i class="fas fa-info-circle" style="color:var(--teal);margin-right:8px"></i>Other Ways to Reach Us</h2>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="width:40px;height:40px;background:var(--purple-dim);border:1px solid var(--border-purple);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fas fa-envelope" style="color:var(--purple-light)"></i>
+          </div>
+          <div>
+            <div style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px">Technical Support</div>
+            <a href="mailto:support@i2tocr.com" style="color:var(--purple-light);text-decoration:none;font-weight:600">support@i2tocr.com</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="width:40px;height:40px;background:var(--teal-dim);border:1px solid rgba(0,206,201,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <i class="fas fa-clock" style="color:var(--teal)"></i>
+          </div>
+          <div>
+            <div style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px">Office Hours</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem">Monday – Friday, 9:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> I2TOCR. All rights reserved.</span>
+      <a href="privacy-policy.html" style="color:var(--text-muted);text-decoration:none">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
